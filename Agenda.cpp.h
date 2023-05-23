@@ -7,18 +7,18 @@ template<typename T>
 void Agenda<T>::GetAgenda(){
     for (auto i:abonati)
     { if (typeid(*i)==typeid(Abonat_Skype_Extern))
-      { Abonat* auxab;
-        auxab=dynamic_cast<Abonat_Skype_Extern*>(i);
+      { std::shared_ptr<Abonat> auxab;
+        auxab=std::dynamic_pointer_cast<Abonat_Skype_Extern>(i);
         auxab->Afisare();
       }
       else if (typeid(*i)==typeid(Abonat_Skype_Romania))
-      { Abonat* auxab;
-        auxab=dynamic_cast<Abonat_Skype_Romania*>(i);
+      { std::shared_ptr<Abonat> auxab;
+        auxab=std::dynamic_pointer_cast<Abonat_Skype_Romania>(i);
         auxab->Afisare();
       }
       else if (typeid(*i)==typeid(Abonat_Skype))
-      { Abonat* auxab;
-        auxab=dynamic_cast<Abonat_Skype*>(i);
+      { std::shared_ptr<Abonat> auxab;
+        auxab=std::dynamic_pointer_cast<Abonat_Skype>(i);
         auxab->Afisare();
       }
       else std::cout<<*i;
@@ -29,7 +29,7 @@ template<typename T>
 template<typename Derived>
 Agenda<T>& Agenda<T>::operator+=(const Derived& ab){
   NrAbonati++;
-  abonati.push_back(new Derived(ab));
+  abonati.push_back(std::make_shared<Derived>(ab));
   return *this;
 }
 
@@ -69,8 +69,8 @@ Agenda<T>& Agenda<T>::operator[](const std::string& Nume){
       break;
     }
     if (typeid(*x)==typeid(Abonat_Skype_Extern))
-    { T* auxab;
-      auxab=dynamic_cast<Abonat_Skype_Extern*>(x);
+    { std::shared_ptr<Abonat> auxab;
+      auxab=std::dynamic_pointer_cast<Abonat_Skype_Extern>(x);
       if (auxab->GetNume()==Nume)
       { ok=1;
         auxab->Afisare();
@@ -78,8 +78,8 @@ Agenda<T>& Agenda<T>::operator[](const std::string& Nume){
       }
     }
     else if (typeid(*x)==typeid(Abonat_Skype_Romania))
-    { T* auxab;
-      auxab=dynamic_cast<Abonat_Skype_Romania*>(x);
+    { std::shared_ptr<Abonat> auxab;
+      auxab=std::dynamic_pointer_cast<Abonat_Skype_Romania>(x);
       if (auxab->GetNume()==Nume)
       { ok=1;
         auxab->Afisare();
@@ -87,8 +87,8 @@ Agenda<T>& Agenda<T>::operator[](const std::string& Nume){
       }
     }
     else if (typeid(*x)==typeid(Abonat_Skype))
-    { T* auxab;
-      auxab=dynamic_cast<Abonat_Skype*>(x);
+    { std::shared_ptr<Abonat> auxab;
+      auxab=std::dynamic_pointer_cast<Abonat_Skype>(x);
       if (auxab->GetNume()==Nume)
       { ok=1;
         auxab->Afisare();

@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <typeinfo>
+#include <memory>
 #include "Abonat.h"
 #include "Abonat_Skype.h"
 #include "Abonat_Skype_Extern.h"
@@ -11,7 +12,9 @@
 template<typename T>
 class Agenda{
     private:
-        std::vector <T*> abonati;
+        //std::vector <T*> abonati;
+        std::vector<std::shared_ptr<T>> abonati;
+        
         static int NrAbonati;
 
     public:

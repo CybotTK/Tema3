@@ -76,7 +76,9 @@ int main(){
     std::cout<<"Doriti sa intrati in aplicatie? Y/N\n";
     std::cin>>c;
     int greseli=0;
+
     Agenda<Abonat> ag;
+    
     if(c=="Y")
     { while(c!="N")
       { system("cls");
