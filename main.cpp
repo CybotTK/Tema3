@@ -135,9 +135,10 @@ int main(){
         else if(Input=="5"){
             try{std::cout<<"Introduceti numele: ";
             std::string Nume;
-            std::cin>>Nume;
+            std::cin.ignore();
+            std::getline(std::cin,Nume);
             for (int i=0;i<Nume.size();i++)
-                if ((Nume[i]>='a' && Nume[i]<='z') || (Nume[i]>='A' && Nume[i]<='Z'));
+                if ((Nume[i]>='a' && Nume[i]<='z') || (Nume[i]>='A' && Nume[i]<='Z') || (Nume[i]==' ' && i>0));
                 else throw std::invalid_argument("Numele introdus este invalid\n");
             ag[Nume];
             }

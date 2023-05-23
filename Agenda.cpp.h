@@ -107,6 +107,7 @@ Agenda<T>& Agenda<T>::operator[](const std::string& Nume){
   if (ok==0){
     throw std::invalid_argument("Numele introdus nu se gaseste in agenda.\n");
   }
+
 }
 
 template <typename T>

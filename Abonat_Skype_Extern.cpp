@@ -60,9 +60,10 @@ std::istream& operator >> (std::istream &in, Abonat_Skype_Extern& data){
     std::cout<<'\n';
     
     std::cout<<"Dati nume: ";
-    in>>data.nume;
+    in.ignore();
+    std::getline(in, data.nume);
     for (int i=0;i<data.nume.size();i++)
-        if ((data.nume[i]>='a' && data.nume[i]<='z') || (data.nume[i]>='A' && data.nume[i]<='Z'));
+        if ((data.nume[i]>='a' && data.nume[i]<='z') || (data.nume[i]>='A' && data.nume[i]<='Z') || (data.nume[i]==' ' && i>0));
         else throw std::invalid_argument("Numele introdus este invalid\n");
     std::cout<<"\n";
 
