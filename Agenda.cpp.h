@@ -5,8 +5,10 @@
 
 template<typename T>
 void Agenda<T>::GetAgenda(){
+    int counter=0;
     for (auto i:abonati)
-    { if (typeid(*i)==typeid(Abonat_Skype_Extern))
+    { std::cout<<++counter<<") ";
+      if (typeid(*i)==typeid(Abonat_Skype_Extern))
       { std::shared_ptr<Abonat> auxab;
         auxab=std::dynamic_pointer_cast<Abonat_Skype_Extern>(i);
         auxab->Afisare();
