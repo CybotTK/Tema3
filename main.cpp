@@ -78,16 +78,17 @@ int main(){
     int greseli=0;
 
     Agenda<Abonat> ag;
-    
+
     if(c=="Y")
     { while(c!="N")
       { system("cls");
         std::cout<<"Apasati tasta 1 pentru a adauga un abonat nou simplu.\n";
         std::cout<<"Apasati tasta 2 pentru a adauga un abonat nou ce are skype.\n";
         std::cout<<"Apasati tasta 3 pentru a adauga un abonat nou ce are skype si este din Romania.\n";
-        std::cout<<"Apasati tasta 4 pentru a adauga un abonat nou din alta tara.\n";
+        std::cout<<"Apasati tasta 4 pentru a adauga un abonat nou ce are skype din alta tara.\n";
         std::cout<<"Apasati tasta 5 pentru a cauta un abonat din agenda dupa nume si a afisa detaliile acestuia\n";
         std::cout<<"Apasati tasta 6 pentru a afisa toata agenda\n";
+        std::cout<<"Apasati tasta 7 pentru a introduce in agenda un contact fantoma pentru a evita restrictiile\n";
         std::cin>>Input;
         if (Input=="1"){
             try{
@@ -153,6 +154,45 @@ int main(){
             if (ag.GetNrAbonati()==0)
                 std::cout<<"Agenda e goala.\n";
             else ag.GetAgenda();
+        }
+        else if(Input=="7")
+        { system("cls");
+          std::cout<<"Apasati tasta 1 pentru a adauga dvs un nume.\n";
+          std::cout<<"Apasati tasta 2 pentru a deschide lista de abonati default.\n";
+          std::string Input2;
+          std::cin>>Input2;
+          if (Input2=="1")
+          { std::string nume;
+            std::cout<<"Dati un nume: ";
+            std::cin.ignore();
+            std::getline(std::cin, nume);
+            std::cout<<"\n";
+            abonat_builder ab_b;
+            Abonat ab = ab_b.setNrTelefon("07n-amcartela").setID(1).setNume(nume).build();
+            ag+=ab;
+          }
+          else if (Input2=="2")
+          { std::cout<<"Apasati tasta 1 pentru a adauga pe regele iM\n";
+            std::cout<<"Apasati tasta 2 pentru a adauga pe Jaxi\n";
+            std::cout<<"Apasati tasta 3 pentru a adauga ChatGPT\n";
+            std::string Input3;
+            std::cin>>Input3;
+
+            if (Input3=="1")
+            { Abonat_Skype_Romania ab= abonat_factory::iM();
+              ag+=ab;
+            }
+            else if (Input3=="2")
+            { Abonat_Skype_Romania ab= abonat_factory::Jaxi();
+              ag+=ab;
+            }
+            else if (Input3=="3")
+            { Abonat_Skype_Extern ab=abonat_factory::ChatGPT();
+              ag+=ab;
+            }
+            else std::cout<<"Input introdus gresit.\n";
+          }
+          else std::cout<<"Input introdus gresit.\n";
         }
         else{
             std::cout<<"Input introdus gresit.\n\n";
